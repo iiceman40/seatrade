@@ -1,0 +1,50 @@
+* {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; margin: 0px; padding: 0px;}
+body {
+	background: #000000;
+	background-size: cover;
+}
+
+.loading {position: fixed; top:0px; bottom: 0px; left: 0px; right: 0px; background: rgba(0,0,0,0.5); font-size: 40px; color: white; padding: 40% 40%;}
+.container-wrap {float:left; width: 800px; height: 800px; overflow: hidden; border: 1px solid green; background: #333;}
+.editor {float:left;}
+
+.tile-set {}
+
+.hud {
+	display:none;
+	position: absolute;
+	background: rgba(255,255,255,0.7);
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	width: 200px;
+}
+.hud > div > div {padding: 0 10px;}
+.menuHeading {font-weight: bold; margin-top: 10px;}
+
+/* CASTLE */
+.block-types {cursor: pointer;}
+.block-type {cursor: pointer;}
+.block-type:hover {background: #BCD4EC !important;}
+.block-type.active {background: #EEEEEE;}
+
+.blockActions {cursor: pointer;}
+.blockAction {cursor: pointer;}
+.blockAction:hover {background: #BCD4EC !important;}
+
+.blockMaterials {}cursor: pointer;
+.blockMaterial {cursor: pointer;}
+.blockMaterial:hover {background: #BCD4EC !important;}
+.blockMaterial.active {background: #EEEEEE;}
+
+/* FARM */
+.farm-types {cursor: pointer;}
+
+
+
+
+
+.screenshot {position: absolute; z-index: 1000;}
+.screenshot img {width: 1000px;}
+
+
