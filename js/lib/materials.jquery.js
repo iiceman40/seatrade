@@ -1,7 +1,11 @@
+//////////////////////////////////////
+// TEXTURES AND MATERIAL			//
+//////////////////////////////////////
+
+/*
+ * TOWN
+ */
 function loadTownMaterials(){
-	//////////////////////////////////////
-	// TEXTURES AND MATERIAL			//
-	//////////////////////////////////////
 	var gras = new THREE.ImageUtils.loadTexture("textures/gras.jpg");
 	
 	var grasLarge = gras;
@@ -61,4 +65,102 @@ function loadTownMaterials(){
 	var materialHay = new THREE.MeshLambertMaterial({
 		map: hayTexture
 	});
+}
+
+
+/*
+ * CASTLE
+ */
+function loadCastleMaterials(){
+	
+	var gras = new THREE.ImageUtils.loadTexture("textures/gras.jpg");
+	
+	var grasLarge = gras;
+	grasLarge.wrapS = grasLarge.wrapT = THREE.RepeatWrapping;
+	grasLarge.repeat.set( rows*10, columns*10 );
+	
+	var grasSmall = gras;
+	
+	var materialFloor = new THREE.MeshLambertMaterial({
+		wireframe: true,
+		color: 'black'
+		//map: grasSmall
+	});
+	
+	var materialGround = new THREE.MeshLambertMaterial({
+		map: grasLarge
+	});
+	
+	var cobbleTexture = new THREE.ImageUtils.loadTexture("textures/cobble_cut.jpg"); // TODO better not cut?
+	cobbleTexture.anisotropy = maxAnisotropy;
+	materialStoneWall = new THREE.MeshLambertMaterial({
+		color: 'gray',
+		map: cobbleTexture,
+		vertexColors: THREE.FaceColors
+	});
+	$('.blockMaterials').append('<div class="blockMaterial active" id="materialStoneWall">Cobble</div>');
+	$('#materialStoneWall').click(function(){
+		selectedMaterial = materialStoneWall;
+		$('.blockMaterial').removeClass('active');
+		$(this).addClass('active');
+	});
+	selectedMaterial = materialStoneWall; // make it default material
+	
+	var crateTexture = new THREE.ImageUtils.loadTexture("textures/crate.jpg");
+	crateTexture.anisotropy = maxAnisotropy;
+	var materialCrate1 = new THREE.MeshLambertMaterial({
+		map: crateTexture
+	});
+	$('.blockMaterials').append('<div class="blockMaterial" id="materialCrate1">Wood/Crate1</div>');
+	$('#materialCrate1').click(function(){
+		selectedMaterial = materialCrate1;
+		$('.blockMaterial').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	var crate2Texture = new THREE.ImageUtils.loadTexture("textures/crate2.jpg");
+	crate2Texture.anisotropy = maxAnisotropy;
+	var materialCrate2 = new THREE.MeshLambertMaterial({
+		map: crate2Texture
+	});
+	$('.blockMaterials').append('<div class="blockMaterial" id="materialCrate2">Wood/Crate2</div>');
+	$('#materialCrate2').click(function(){
+		selectedMaterial = materialCrate2;
+		$('.blockMaterial').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	var darkwoodTexture = new THREE.ImageUtils.loadTexture("textures/darkwood.jpg");
+	darkwoodTexture.anisotropy = maxAnisotropy;
+	var materialDarkWood = new THREE.MeshLambertMaterial({
+		map: darkwoodTexture
+	});
+	$('.blockMaterials').append('<div class="blockMaterial" id="materialDarkWood">Dark Wood</div>');
+	$('#materialDarkWood').click(function(){
+		selectedMaterial = materialDarkWood;
+		$('.blockMaterial').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	var hayTexture = new THREE.ImageUtils.loadTexture("textures/hay.jpg");
+	hayTexture.anisotropy = maxAnisotropy;
+	var materialHay = new THREE.MeshLambertMaterial({
+		map: hayTexture
+	});
+	$('.blockMaterials').append('<div class="blockMaterial" id="materialHay">Hay</div>');
+	$('#materialHay').click(function(){
+		selectedMaterial = materialHay;
+		$('.blockMaterial').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	var materials = new Object();
+	materials['materialFloor'] = materialFloor;
+	materials['materialGround'] = materialGround;
+	materials['materialCrate1'] = materialCrate1;
+	materials['materialCrate2'] = materialCrate2;
+	materials['materialDarkWood'] = materialDarkWood;
+	materials['materialHay'] = materialHay;
+	
+	return materials;
 }

@@ -136,11 +136,8 @@ function onDocumentMouseMove( event ) {
 		
 		if ( intersects.length > 0 ) {
 			field = intersects[ 0 ].object;
-			
-			//console.log( intersects[0] );
 			hoveringOver = intersects[0].object;
 			intersects[0].object.outline.material = new THREE.MeshBasicMaterial( { color: 0x550000, side: THREE.BackSide } );
-			
 		} 		
 	}
 }
