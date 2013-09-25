@@ -134,6 +134,8 @@ function onCastleDocumentMouseUp( event ) {
 						});
 						intersects[ 0 ].object.material = intersects[ 0 ].object.materialSelected;
 						intersects[ 0 ].object.selected = true;
+						// TODO Special case for camp (or other custom models) to consider materials array instead of single material
+						// Alternativly: user materials array for simple meshs as well 
 					}
         		}
         	} else {
@@ -153,12 +155,11 @@ function onCastleDocumentMouseUp( event ) {
 					selectedMaterial.vertexColors = THREE.FaceColor;
 					
 					var loader = new THREE.JSONLoader();
-			        loader.load( "models/ramp.js", function( geometry, materials ) {
+			        loader.load( "models/ramp6.js", function( geometry, materials ) {
 			        	var material = new THREE.MeshFaceMaterial( materials );
-			        	// TODO SET CORRECT SELECTED MATERIAL FOR RAMP
+			        	material.materials[0] = selectedMaterial;
 						var block = new THREE.Mesh(geometry, material);
 						block.scale.x = block.scale.y = block.scale.z = 1;
-						console.log(block);
 						setBlockPosition(block, intersects, intersectsGround);
 					});
 				}
