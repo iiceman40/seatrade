@@ -112,11 +112,6 @@ function loadCastleMaterials(){
 		map: crateTexture
 	});
 	$('.blockMaterials').append('<div class="blockMaterial" id="materialCrate1">Wood/Crate1</div>');
-	$('#materialCrate1').click(function(){
-		selectedMaterial = materialCrate1;
-		$('.blockMaterial').removeClass('active');
-		$(this).addClass('active');
-	});
 	
 	var crate2Texture = new THREE.ImageUtils.loadTexture("textures/crate2.jpg");
 	crate2Texture.anisotropy = maxAnisotropy;
@@ -124,11 +119,6 @@ function loadCastleMaterials(){
 		map: crate2Texture
 	});
 	$('.blockMaterials').append('<div class="blockMaterial" id="materialCrate2">Wood/Crate2</div>');
-	$('#materialCrate2').click(function(){
-		selectedMaterial = materialCrate2;
-		$('.blockMaterial').removeClass('active');
-		$(this).addClass('active');
-	});
 	
 	var darkwoodTexture = new THREE.ImageUtils.loadTexture("textures/darkwood.jpg");
 	darkwoodTexture.anisotropy = maxAnisotropy;
@@ -136,11 +126,6 @@ function loadCastleMaterials(){
 		map: darkwoodTexture
 	});
 	$('.blockMaterials').append('<div class="blockMaterial" id="materialDarkWood">Dark Wood</div>');
-	$('#materialDarkWood').click(function(){
-		selectedMaterial = materialDarkWood;
-		$('.blockMaterial').removeClass('active');
-		$(this).addClass('active');
-	});
 	
 	var hayTexture = new THREE.ImageUtils.loadTexture("textures/hay.jpg");
 	hayTexture.anisotropy = maxAnisotropy;
@@ -148,11 +133,6 @@ function loadCastleMaterials(){
 		map: hayTexture
 	});
 	$('.blockMaterials').append('<div class="blockMaterial" id="materialHay">Hay</div>');
-	$('#materialHay').click(function(){
-		selectedMaterial = materialHay;
-		$('.blockMaterial').removeClass('active');
-		$(this).addClass('active');
-	});
 	
 	var materials = new Object();
 	materials['materialFloor'] = materialFloor;

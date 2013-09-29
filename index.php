@@ -31,11 +31,12 @@
 		<script type="text/javascript" src="js/lib/materials.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/models.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/effects.jquery.js"></script>
-		<script type="text/javascript" src="js/lib/ui.jquery.js"></script>
 		
 		<script type="text/javascript" src="js/lib/castle.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/town.jquery.js"></script>
 		<script type="text/javascript" src="js/seatrade.jquery.js"></script>
+		
+		<script type="text/javascript" src="js/lib/ui.jquery.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/seatrade.css" />
 	</head>
 	<body>

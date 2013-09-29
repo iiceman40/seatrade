@@ -114,7 +114,6 @@ function loadFarm(){
 	$('.farm-hud').show();
 }
 function loadCastle(){
-	initCastleUI();
 	initCastle();
 	console.log('castle loaded');
 	$('.hud').hide();

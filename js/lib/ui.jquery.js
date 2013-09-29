@@ -1,4 +1,13 @@
-function initCastleUI(){
+function initCastleUI(materials){
+	console.log('initiatin UI...')
+	
+	$('.blockMaterial').click(function(){
+		id = $(this).attr('id');
+		selectedMaterial = materials[id]
+		$('.blockMaterial').removeClass('active');
+		$(this).addClass('active');
+	});
+	
 	$('.block-type').click(function() {
 		selectedBlockType = $(this).attr('id');
 		$('.block-type').removeClass('active');
