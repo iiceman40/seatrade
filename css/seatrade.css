@@ -69,12 +69,22 @@ button {
 	padding: 10px 30px;
 	margin: 10px;
 }
+/* MAP */
 #mapcontainer {
 	position: absolute;
 	top: 100px;
 	left: 20%;
 }
-
+.destination {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: rgba(0,0,0,0.5);
+	padding: 5px;
+	color: white;
+	border-radius: 5px;
+}
 .screenshot {position: absolute; z-index: 1000;}
 .screenshot img {width: 1000px;}
 

@@ -7,31 +7,35 @@ var hoveringOver = null;
 var container;
 
 var camera, scene, renderer, objects;
-
-var clock = new THREE.Clock();
+var projector = new THREE.Projector();
 var maxAnisotropy = 1;
+var clock = new THREE.Clock();
 
 var ground = [];
 var objects = [];
 
-// TODO path finding
-var allow_diagonals = true;
-var board = [];
-var map = []
-var fields = new Array();
-
-//Set the number of rows and columns for the board
-var rows = 30;
-var columns = 30;
-
-// interface
+// CASTLE BUILD
 var selectedBlockType = 'blockType1';
 var selectedBlock = null;
 var selectedMaterial = null;
+var rows = 30;
+var columns = 30;
 
-var projector = new THREE.Projector();
+// MAP
+var citynames = ["Aschering","Schmidham","Liebenhof","Geringswalde","Schrammlhof","Hohburkersdorf","Leerhafe","Burgkhammer","Metzenried","Auretzdorf"];
+var cities = new Array();
 
+// PLAYER
+var player = new Object();
+player.pos = new Object();
+player.pos.x = 0;
+player.pos.y = 0;
+
+player.traveling = false;
+
+// GENERAL GAMEPLAY
 var activeArea = 'town';
+travelSpeed = 200;
 
 
 //////////////////////////////////////
