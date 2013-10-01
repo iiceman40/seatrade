@@ -25,12 +25,52 @@ function initSunset(){
 	hemiLight.position.set( 0, 500, 0 );
 	scene.add( hemiLight );
 	
+	// FOG
+	scene.fog = new THREE.Fog( 0xE27109, 100, 1200 );
+	//scene.fog.color.copy( uniforms.bottomColor.value );
+
+	// SKYDOME
+	var vertexShader = document.getElementById( 'vertexShader' ).textContent;
+	var fragmentShader = document.getElementById( 'fragmentShader' ).textContent;
+	var uniforms = {
+		topColor: 	 { type: "c", value: new THREE.Color( 0x0077ff ) },
+		bottomColor: { type: "c", value: new THREE.Color( 0xffffff ) },
+		offset:		 { type: "f", value: 33 },
+		exponent:	 { type: "f", value: 0.6 }
+	}
+	uniforms.topColor.value.copy( hemiLight.color );
+	
+	// Sky Sphere
+	var skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
+	var skyMat = new THREE.ShaderMaterial( { 
+		vertexShader: vertexShader, 
+		fragmentShader: fragmentShader, 
+		uniforms: uniforms, 
+		side: THREE.BackSide,
+	} );
+	var sky = new THREE.Mesh( skyGeo, skyMat );
+	scene.add( sky );
+	
+	// Sky Box
+	var skyTexture = new THREE.ImageUtils.loadTexture("images/sunset.jpg");
+	var skyGeo = new THREE.CubeGeometry( 10000, 1000, 1000 );
+	var skyMat = new THREE.MeshBasicMaterial( { 
+		map: skyTexture,
+		side: THREE.BackSide
+	} );
+	var sky = new THREE.Mesh( skyGeo, skyMat );
+	scene.add( sky );
+	
+	console.log('sunset created');
+}
+
+function initLenseFlares(x, y, z) {
 	// lens flare
 	var textureFlare0 = THREE.ImageUtils.loadTexture( "textures/lensflare/lensflare0.png" );
 	var textureFlare2 = THREE.ImageUtils.loadTexture( "textures/lensflare/lensflare2.png" );
 	var textureFlare3 = THREE.ImageUtils.loadTexture( "textures/lensflare/lensflare3.png" );
 
-	addLight( 0.55, 0.9, 0.5, 0, 250, -400 );
+	addLight( 0.55, 0.9, 0.5, x, y, z );
 	function addLight( h, s, l, x, y, z ) {
 		var light = new THREE.PointLight( 0xffffff, 1.5, 4500 );
 		light.color.setHSL( h, s, l );
@@ -52,42 +92,6 @@ function initSunset(){
 
 		scene.add( lensFlare );
 	}
-	
-	// FOG
-	scene.fog = new THREE.Fog( 0xE27109, 100, 1200 );
-	//scene.fog.color.copy( uniforms.bottomColor.value );
-
-	// SKYDOME
-	var vertexShader = document.getElementById( 'vertexShader' ).textContent;
-	var fragmentShader = document.getElementById( 'fragmentShader' ).textContent;
-	var uniforms = {
-		topColor: 	 { type: "c", value: new THREE.Color( 0x0077ff ) },
-		bottomColor: { type: "c", value: new THREE.Color( 0xffffff ) },
-		offset:		 { type: "f", value: 33 },
-		exponent:	 { type: "f", value: 0.6 }
-	}
-	uniforms.topColor.value.copy( hemiLight.color );
-	
-	var skyGeo = new THREE.SphereGeometry( 4000, 32, 15 );
-	var skyMat = new THREE.ShaderMaterial( { 
-		vertexShader: vertexShader, 
-		fragmentShader: fragmentShader, 
-		uniforms: uniforms, 
-		side: THREE.BackSide,
-	} );
-	var sky = new THREE.Mesh( skyGeo, skyMat );
-	scene.add( sky );
-	
-	var skyTexture = new THREE.ImageUtils.loadTexture("images/sunset.jpg");
-	var skyGeo = new THREE.CubeGeometry( 10000, 1000, 1000 );
-	var skyMat = new THREE.MeshBasicMaterial( { 
-		map: skyTexture,
-		side: THREE.BackSide
-	} );
-	var sky = new THREE.Mesh( skyGeo, skyMat );
-	scene.add( sky );
-	
-	console.log('sunset created');
 }
 
 function initDayTime() {

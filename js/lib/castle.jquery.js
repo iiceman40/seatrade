@@ -43,8 +43,9 @@ function initCastle() {
 	}
 	
 	// environment: lights and effects
-	//initDayTime();
-	initSunset();
+	initDayTime();
+	//initSunset();
+	initLenseFlares(1500, 1000, -1999);
 	console.log('environment created');
 	
 	// UI

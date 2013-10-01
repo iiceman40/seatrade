@@ -27,11 +27,18 @@
 		<script src="js/vendor/three.min.js"></script>
 		<script src="js/vendor/OrbitControls.js"></script>
 		<script src="js/vendor/tween.min.js"></script>
+		<script src="js/vendor/kinetic.js"></script>
+		<script src="js/vendor/pathfinding.js"></script>
+		
+		
 		<script type="text/javascript" src="js/lib/global.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/materials.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/models.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/effects.jquery.js"></script>
 		
+		<script type="text/javascript" src="js/lib/map.jquery.js"></script>
+		
+		<script type="text/javascript" src="js/lib/dock.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/castle.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/town.jquery.js"></script>
 		<script type="text/javascript" src="js/seatrade.jquery.js"></script>

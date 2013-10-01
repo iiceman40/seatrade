@@ -61,6 +61,7 @@ function initTown() {
 	
 	// Effects and Enviorment
 	initSunset();
+	initLenseFlares(0, 250, -400);
 	
 }
 
@@ -84,6 +85,10 @@ function onTownDocumentMouseUp( event ){
 				// TWEENING
 				var position = {x: camera.position.x, y: camera.position.y, z: camera.position.z};
 				var target = {x: intersects[0].object.position.x, y: intersects[0].object.position.y+30, z: intersects[0].object.position.z};
+				if(intersects[0].object.switchTo == 'dock') {
+					target.z = target.z+150;
+					target.x = target.x+50; 
+				}
 				var tween = new TWEEN.Tween(position).to(target, 1000);
 				
 				tween.onUpdate(function(){
@@ -98,6 +103,7 @@ function onTownDocumentMouseUp( event ){
 					switch( intersects[0].object.switchTo ){
 						case 'farm': loadFarm(); break;
 						case 'castle': loadCastle(); break;
+						case 'dock': loadDock(); break;
 						default: break;
 					}
 				//});
@@ -109,6 +115,7 @@ function onTownDocumentMouseUp( event ){
 
 // ACTIONS FOR SWITCHING SCENES
 function loadFarm(){
+	initFarm();
 	console.log('farm loaded');
 	$('.hud').hide();
 	$('.farm-hud').show();
@@ -118,6 +125,12 @@ function loadCastle(){
 	console.log('castle loaded');
 	$('.hud').hide();
 	$('.castle-hud').show();
+}
+function loadDock(){
+	initDock();
+	console.log('dock loaded');
+	$('.hud').hide();
+	$('.dock-hud').show();
 }
 
 console.log('town loaded');

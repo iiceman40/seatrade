@@ -37,3 +37,37 @@ function initCastleUI(materials){
 	});
 	
 }
+
+function initDockUI(){
+	if( $('.ship-selector').length == 0 ){
+		$('body').append(
+			'<div class="ship-selector">' +
+				'<div class="selected-ships"></div>' +
+				'<div class="fleet">' +
+					'<span class="ship">SHIP</span>' +
+				'</div>' +
+				'<button class="map">Map &gt;</button>' +
+			'</div>'
+		);
+	}
+	
+	$('.ship-selector .fleet .ship').click(function(){
+		$(this).appendTo('.selected-ships');
+		// TODO save id of selected ships in an array
+		$('.ship-selector .selected-ships .ship').click(function(){
+			$(this).appendTo('.fleet');
+			// TODO remove id of selected ships from array
+		});
+	});
+	$('.ship-selector button.map').click(function(){
+		$('.ship-selector').remove();
+		if( $('.map-area').length == 0 ){
+			$('body').append(
+				'<div class="map-area">' +
+					'<div id="mapcontainer"> </div>' +
+				'</div>'
+			);
+		}
+		initMap();
+	})
+}

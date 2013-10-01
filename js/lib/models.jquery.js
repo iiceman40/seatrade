@@ -160,6 +160,7 @@ function loadTownModels(){
         ship.position.z = -180;
         ship.position.y = 0;
         ship.rotation.y = Math.PI/5;
+        ship.switchTo = "dock";
         scene.add(ship);
         
         var outlineMaterial1 = new THREE.MeshBasicMaterial( { color: 0x000000, side: THREE.BackSide } );
