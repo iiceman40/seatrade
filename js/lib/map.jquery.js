@@ -30,11 +30,13 @@ var sources = {
 	desert: 'http://seatrade.circleart.de/gfx/landscape_v1.jpg',
 	ocean: 'http://seatrade.circleart.de/gfx/ocean_v1.jpg'
 };
-
+$(document).ready(function(){
+	initMap();
+	initMapUI();
+});
 function initMap() {
 	if( $('.destination').length == 0){
 		$('body').append('<div class="destination"></div>')
-		$('.destination').fadeIn(200);
 	}
 	
 	// init stage
@@ -58,7 +60,6 @@ function initMap() {
 			placeCity();
 		
 		console.log( cities );
-
 		console.log('playerpos '+player.pos.cityid);
 		
 		generateGrid();
@@ -273,7 +274,7 @@ function placeCity(){
 			player.pos.y = posy;
 			player.pos.cityname = city.name;
 			player.pos.cityid = city.id;
-			$('#player-location').text(player.pos.cityname);
+			$('.town-name').text(player.pos.cityname);
 			
 			cities.push(city);
 			console.log('city placed');
@@ -319,7 +320,7 @@ function squareClicked(square){
 			lineLayer.removeChildren();
 			lineLayer.draw();
 			
-			$('#player-location').text('On the ocean');
+			changeTownNameTo('On the ocean...');
 			
 			var line = new Array();
 		    for(i=0; i<path.length; i++){
@@ -396,13 +397,13 @@ function writeMessage(messageLayer, message) {
 	$('.destination').fadeIn(200);
 	offset = $('#mapcontainer').position();
 	var mousePos = stage.getMousePosition();
-    x = mousePos.x + 15 + offset.left;
-    y = mousePos.y - 7 + offset.top;
+    var x = mousePos.x + 80 + offset.left;
+    var y = mousePos.y - 30 + offset.top;
 	$('.destination').css({
-		'top': y+'px',
-		'left': x+'px'
+		'top': y + 'px',
+		'left': x + 'px'
 	});
-    
+    /*
     var context = messageLayer.getContext();
     messageLayer.clear();
     messageLayer.removeChildren();
@@ -420,10 +421,8 @@ function writeMessage(messageLayer, message) {
     });
     messageLayer.add(text);
     messageLayer.draw();
-    //context.font = '18pt Calibri';
-    //context.fillStyle = 'white';
-    //context.fillText(message, x, y);
-  }
+    */
+}
 
 // DRAW
 function drawMap(){
@@ -526,6 +525,7 @@ function followPath(i, square){
 	    	followPath(i+2, square);
 	    }, travelSpeed);
 	} else {
+		// destination reached
 		player.traveling = false;
 		setTimeout(function(){
 			//arrived
@@ -533,7 +533,13 @@ function followPath(i, square){
 			player.pos.y = square.ypos;
 		    player.pos.cityname = citynames[square.cityid];
 		    player.pos.cityid = square.cityid
-			$('#player-location').text(player.pos.cityname);
+		    
+		    changeTownNameTo(player.pos.cityname);
+		    $('#container').fadeOut(1000, function(){
+			    initTown();
+			    $('#container').fadeOut(1000);
+		    });
+		    
 			lineLayer.removeChildren();
 		    lineLayer.draw();
 	    }, travelSpeed*2);

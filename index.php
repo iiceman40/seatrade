@@ -49,6 +49,8 @@
 	<body>
 		<div id="container"> </div>
 		
+		<div class="town-name"></div>
+		
 		<div class="castle-hud hud">
 			<div class="blockMaterials">
 				<div class="menuHeading">Material:</div>
@@ -79,5 +81,10 @@
 		</div>
 		<div class="screenshot"> </div>
 		
+		<div class="map-area">
+            <div id="mapcontainer"> </div>
+            <button class="backToDock">&lt; Back to Dock</button>
+        </div>
+        
 	</body>
 </html>

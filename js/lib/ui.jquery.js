@@ -46,9 +46,11 @@ function initDockUI(){
 				'<div class="fleet">' +
 					'<span class="ship">SHIP</span>' +
 				'</div>' +
+				'<button class="backToTown">&lt; Back to Town</button>' +
 				'<button class="map">Map &gt;</button>' +
 			'</div>'
 		);
+		$('.ship-selector').fadeIn(500);
 	}
 	
 	$('.ship-selector .fleet .ship').click(function(){
@@ -60,14 +62,21 @@ function initDockUI(){
 		});
 	});
 	$('.ship-selector button.map').click(function(){
-		$('.ship-selector').remove();
-		if( $('.map-area').length == 0 ){
-			$('body').append(
-				'<div class="map-area">' +
-					'<div id="mapcontainer"> </div>' +
-				'</div>'
-			);
-		}
-		initMap();
-	})
+		$('.ship-selector').fadeOut(0, function(){
+			$('.ship-selector').remove();
+			$('.map-area').fadeIn(0);
+		});
+	});
+	$('.backToTown').click(function() {
+		$('.ship-selector').fadeOut(500, function(){
+			$('.ship-selector').remove();
+		});
+	});
+}
+
+function initMapUI(){
+	$('.backToDock').click(function() {
+		$('.map-area').fadeOut(0);
+		initDockUI();
+	});
 }

@@ -1,5 +1,4 @@
 function initTown() {
-	scene = new THREE.Scene();
 	clearScene();
 	
 	// Camera
@@ -58,6 +57,9 @@ function initTown() {
 	});
 	tween.delay(2000)
 	tween.start();
+	setTimeout(function(){
+		$('.town-name').fadeIn(800);
+	},3000);
 	
 	// Effects and Enviorment
 	initSunset();
@@ -85,6 +87,8 @@ function onTownDocumentMouseUp( event ){
 				// TWEENING
 				var position = {x: camera.position.x, y: camera.position.y, z: camera.position.z};
 				var target = {x: intersects[0].object.position.x, y: intersects[0].object.position.y+30, z: intersects[0].object.position.z};
+				
+				// special animation for dock area
 				if(intersects[0].object.switchTo == 'dock') {
 					target.z = target.z+150;
 					target.x = target.x+50; 

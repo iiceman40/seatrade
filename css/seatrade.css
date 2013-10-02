@@ -1,7 +1,33 @@
+@font-face {
+    font-family: 'england_hand_dbregular';
+    src: url('england-webfont.eot');
+    src: url('england-webfont.eot?#iefix') format('embedded-opentype'),
+         url('england-webfont.woff') format('woff'),
+         url('england-webfont.ttf') format('truetype'),
+         url('england-webfont.svg#england_hand_dbregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 * {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; margin: 0px; padding: 0px;}
 body {
 	background: #000000;
 	background-size: cover;
+}
+
+/* GENERAL */
+.town-name {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 110;
+	color: #ffffff;
+	font-family: england_hand_dbregular;
+	padding: 40px;
+	margin-top: -40px;
+	text-shadow: 2px 2px 1px black;
 }
 
 .loading {position: fixed; top:0px; bottom: 0px; left: 0px; right: 0px; background: rgba(0,0,0,0.5); font-size: 40px; color: white; padding: 40% 40%;}
@@ -43,37 +69,49 @@ body {
 /* DOCK */
 .ship-selector {
 	position: absolute;
-	height: 800px;
-	width: 800px;
-	background: #CCC;
-	z-index: 100;
-	top: 40px;
-	left: 20%;
+	top: 10px;
+	left: 5%;
+	background: url('/images/paper.png') no-repeat;
+	padding: 80px 120px;
+	width: 1120px;
+	height: 720px;
 }
 .selected-ships {
 	width: 33%;
-	background: #aaa;
+	background: rgba(0, 0, 0, 0.3);
 	height: 100%;
 	float: left;
 }
 .ship {
+	background: url('/images/icons/tall-ship.svg') no-repeat brown;
+	background-size: cover;
+	background-position: -15px 5px;
 	width: 50px;
 	height: 50px;
-	background: brown;
 	display: inline-block;
 	padding: 15px;
 	text-align: center;
 	margin: 10px;
+	overflow: hidden;
+	text-indent: -999999px;
 }
 button {
 	padding: 10px 30px;
 	margin: 10px;
 }
 /* MAP */
-#mapcontainer {
+.map-area {
+	display: none;
 	position: absolute;
-	top: 100px;
-	left: 20%;
+	top: 10px;
+	left: 5%;
+	background: url('/images/paper.png') no-repeat;
+	padding: 95px 100px 90px 165px;
+	width: 1120px;
+}
+#mapcontainer{
+	position: relative;
+	z-index: 100;
 }
 .destination {
 	display: none;
@@ -84,6 +122,7 @@ button {
 	padding: 5px;
 	color: white;
 	border-radius: 5px;
+	z-index: 1000;
 }
 .screenshot {position: absolute; z-index: 1000;}
 .screenshot img {width: 1000px;}

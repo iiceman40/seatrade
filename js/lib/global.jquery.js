@@ -6,7 +6,8 @@ var hoveringOver = null;
 
 var container;
 
-var camera, scene, renderer, objects;
+var camera, renderer, objects;
+var scene = new THREE.Scene();
 var projector = new THREE.Projector();
 var maxAnisotropy = 1;
 var clock = new THREE.Clock();
@@ -95,6 +96,13 @@ function clearScene(){
         scene.remove(scene.children[i]);
     }
 	scene = new THREE.Scene();
+}
+
+function changeTownNameTo(newName) {
+	$('.town-name').fadeOut(500, function(){
+		$('.town-name').html( newName );
+		$('.town-name').fadeIn(500);
+	});
 }
 
 //////////////////////////////////////
