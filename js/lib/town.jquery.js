@@ -1,23 +1,11 @@
-function initTown() {
+function initTown(from) {
+	activeArea = 'town';
 	clearScene();
 	
 	// Camera
 	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
 	camera.position.set( 150, 150, 400 );
 	camera.lookAt(scene.position);
-	
-	
-	//////////////////////////////////////
-	// RENDERER							//
-	//////////////////////////////////////
-	renderer = new THREE.WebGLRenderer({antialias:true, transparent: true, preserveDrawingBuffer: true});
-	
-	// enable shadows on the renderer
-    renderer.shadowMapEnabled = true;
-	renderer.shadowMapType = THREE.PCFSoftShadowMap;
-	renderer.physicallyBasedShading = true;
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	maxAnisotropy = renderer.getMaxAnisotropy();
 	
 	// Materials
 	loadTownMaterials();
@@ -47,7 +35,7 @@ function initTown() {
 	// Object and Camera Movement
 	var position = { x : 150, y: 150, z: 400 };
 	var target = { x : 70, y: 30, z: 300 };
-	var tween = new TWEEN.Tween(position).to(target, 2000);
+	tween = new TWEEN.Tween(position).to(target, 2000);
 	
 	tween.onUpdate(function(){
 	    camera.position.x = position.x;
@@ -65,6 +53,9 @@ function initTown() {
 	initSunset();
 	initLenseFlares(0, 250, -400);
 	
+	if(from!=null){
+		$('#container').fadeIn(1000);
+	}
 }
 
 // Events
@@ -85,33 +76,21 @@ function onTownDocumentMouseUp( event ){
 			
 			if ( intersects.length > 0 ) {
 				// TWEENING
-				var position = {x: camera.position.x, y: camera.position.y, z: camera.position.z};
-				var target = {x: intersects[0].object.position.x, y: intersects[0].object.position.y+30, z: intersects[0].object.position.z};
+				target = {x: intersects[0].object.position.x, y: intersects[0].object.position.y+30, z: intersects[0].object.position.z};
 				
 				// special animation for dock area
 				if(intersects[0].object.switchTo == 'dock') {
 					target.z = target.z+150;
 					target.x = target.x+50; 
 				}
-				var tween = new TWEEN.Tween(position).to(target, 1000);
+				cameraTo(target,1000);
 				
-				tween.onUpdate(function(){
-				    camera.position.x = position.x;
-				    camera.position.y = position.y;
-				    camera.position.z = position.z;
-				});
-				tween.start();
-				setTimeout(function() {
-				//$('canvas').fadeOut(1000, function(){
-					console.log(intersects[0].object.switchTo);
-					switch( intersects[0].object.switchTo ){
-						case 'farm': loadFarm(); break;
-						case 'castle': loadCastle(); break;
-						case 'dock': loadDock(); break;
-						default: break;
-					}
-				//});
-				}, 1000);
+				switch( intersects[0].object.switchTo ){
+					case 'farm': loadFarm(); break;
+					case 'castle': loadCastle(); break;
+					case 'dock': loadDock(); break;
+					default: break;
+				}
 			}
 		}
 	}
@@ -119,22 +98,28 @@ function onTownDocumentMouseUp( event ){
 
 // ACTIONS FOR SWITCHING SCENES
 function loadFarm(){
-	initFarm();
-	console.log('farm loaded');
-	$('.hud').hide();
-	$('.farm-hud').show();
+	$('#container').fadeOut(1000, function(){ 
+		initFarm();
+		console.log('farm loaded');
+		$('.hud').hide();
+		$('.farm-hud').show();
+	});
 }
 function loadCastle(){
-	initCastle();
-	console.log('castle loaded');
-	$('.hud').hide();
-	$('.castle-hud').show();
+	$('#container').fadeOut(1000, function(){ 
+		initCastle();
+		console.log('castle loaded');
+		$('.hud').hide();
+		$('.castle-hud').show();
+	});
 }
 function loadDock(){
-	initDock();
-	console.log('dock loaded');
-	$('.hud').hide();
-	$('.dock-hud').show();
+	setTimeout(function(){
+		initDock();
+		console.log('dock loaded');
+		$('.hud').hide();
+		$('.dock-hud').show();
+	}, 1000);
 }
 
 console.log('town loaded');

@@ -69,6 +69,7 @@
 				<div class="menuHeading">Modify:</div>
 				<div class="blockAction" id="deleteSelected">Delete</div>
 			</div>
+			<button class="backToTownFromCastle">&lt; Back to Town</button>
 		</div>
 		
 		<div class="farm-hud hud">

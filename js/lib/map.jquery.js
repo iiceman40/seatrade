@@ -534,10 +534,21 @@ function followPath(i, square){
 		    player.pos.cityname = citynames[square.cityid];
 		    player.pos.cityid = square.cityid
 		    
-		    changeTownNameTo(player.pos.cityname);
+		    // LOAD NEW TOWN SCENE
+		    console.log('town reached');
+	    	$('.map-area').fadeOut(100);
+	    	$('.town-name').fadeOut(500);
 		    $('#container').fadeOut(1000, function(){
+		    	changeTownNameTo(player.pos.cityname);
+		    	$('.town-name').hide();
+		    	target = { x : 150, y: 150, z: 400 };
+		    	cameraTo(target, 10);
 			    initTown();
-			    $('#container').fadeOut(1000);
+			    $('#container').fadeIn(1000, function(){
+			    	setTimeout(function(){
+						$('.town-name').fadeIn(800);
+					},1000);
+			    });
 		    });
 		    
 			lineLayer.removeChildren();

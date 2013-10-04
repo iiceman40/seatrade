@@ -38,6 +38,18 @@ player.traveling = false;
 var activeArea = 'town';
 travelSpeed = 200;
 
+//////////////////////////////////////
+// INIT RENDERER					//
+//////////////////////////////////////
+renderer = new THREE.WebGLRenderer({antialias:true, transparent: true, preserveDrawingBuffer: true});
+
+// enable shadows on the renderer
+renderer.shadowMapEnabled = true;
+renderer.shadowMapType = THREE.PCFSoftShadowMap;
+renderer.physicallyBasedShading = true;
+renderer.setSize( window.innerWidth, window.innerHeight );
+maxAnisotropy = renderer.getMaxAnisotropy();
+
 
 //////////////////////////////////////
 // RENDER AND ANIMATION				//
@@ -57,7 +69,7 @@ function render() {
 	THREE.AnimationHandler.update( delta );
 	//camera.lookAt(scene.position);
 	
-	if( activeArea == "town" ){
+	if( activeArea != "castle"){
 		TWEEN.update();
 	}
 	//controls.update( delta );
@@ -96,6 +108,7 @@ function clearScene(){
         scene.remove(scene.children[i]);
     }
 	scene = new THREE.Scene();
+	console.log('scene cleared');
 }
 
 function changeTownNameTo(newName) {
@@ -103,6 +116,19 @@ function changeTownNameTo(newName) {
 		$('.town-name').html( newName );
 		$('.town-name').fadeIn(500);
 	});
+}
+
+function cameraTo(target, time) {
+	var position = {x: camera.position.x, y: camera.position.y, z: camera.position.z};
+	//var target = { x : 70, y: 30, z: 300 };
+	tween = new TWEEN.Tween(position).to(target, time);
+		
+	tween.onUpdate(function(){
+	    camera.position.x = position.x;
+	    camera.position.y = position.y;
+	    camera.position.z = position.z;
+	});
+	tween.start();
 }
 
 //////////////////////////////////////

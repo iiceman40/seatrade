@@ -1,5 +1,4 @@
 function initCastleUI(materials){
-	console.log('initiatin UI...')
 	
 	$('.blockMaterial').click(function(){
 		id = $(this).attr('id');
@@ -36,6 +35,12 @@ function initCastleUI(materials){
 		}
 	});
 	
+	$('.backToTownFromCastle').click(function() {
+		$('.castle-hud').fadeOut(1000);
+		$('#container').fadeOut(1000, function(){
+			initTown("castle");
+		});
+	});
 }
 
 function initDockUI(){
@@ -70,6 +75,9 @@ function initDockUI(){
 	$('.backToTown').click(function() {
 		$('.ship-selector').fadeOut(500, function(){
 			$('.ship-selector').remove();
+			target = { x : 70, y: 30, z: 300 };
+			cameraTo(target, 1000);
+			activeArea = "town";
 		});
 	});
 }

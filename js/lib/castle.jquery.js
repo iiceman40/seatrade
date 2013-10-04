@@ -1,6 +1,4 @@
 function initCastle() {
-	console.log('trying to init castle');
-	
 	// vars
 	var materials = new Array();
 	
@@ -50,6 +48,8 @@ function initCastle() {
 	
 	// UI
 	initCastleUI(materials);
+	
+	$('#container').fadeIn(1000);
 }
 
 function onCastleDocumentMouseUp( event ) {
