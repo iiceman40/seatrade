@@ -40,6 +40,7 @@
 		
 		<script type="text/javascript" src="js/lib/dock.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/castle.jquery.js"></script>
+		<script type="text/javascript" src="js/lib/farm.jquery.js"></script>
 		<script type="text/javascript" src="js/lib/town.jquery.js"></script>
 		<script type="text/javascript" src="js/seatrade.jquery.js"></script>
 		
@@ -55,11 +56,11 @@
 			<div class="blockMaterials">
 				<div class="menuHeading">Material:</div>
 			</div>
-			<div class="block-types">
-			    <div class="menuHeading">Block-Types:</div>
-				<div class="block-type active" id="blockType1">Cube</div>
-				<div class="block-type" id="blockType2">Cylinder</div>
-				<div class="block-type" id="blockType3">Ramp</div>
+			<div class="blockFarmTypes">
+			    <div class="menuHeading">blockFarmTypes:</div>
+				<div class="blockType active" id="blockType1">Cube</div>
+				<div class="blockType" id="blockType2">Cylinder</div>
+				<div class="blockType" id="blockType3">Ramp</div>
 			</div>
 			<div class="blockActions">
 				<div class="menuHeading">Rotate:</div>
@@ -74,11 +75,11 @@
 		
 		<div class="farm-hud hud">
 			<div class="farm-types">
-				<div class="block-type active" id="farmType1">Cattle</div>
-				<div class="block-type" id="farmType2">Wheat</div>
-				<div class="block-type" id="farmType3">Bananas</div>
-				<div class="block-type" id="farmType4">Grapes</div>
+			    <div class="menuHeading">Storage:</div>
+			    <div>Wheat: <span class="wheatBarn">-</span></div>
+			    <div class="menuHeading">Farm types:</div>
 			</div>
+			<button class="backToTownFromFarm">&lt; Back to Town</button>
 		</div>
 		<div class="screenshot"> </div>
 		

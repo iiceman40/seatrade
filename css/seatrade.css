@@ -42,7 +42,10 @@ body {
 .backToTownFromCastle {position: absolute; bottom: 10px; right: 10px;}
 
 /* FARM */
-.farm-types {cursor: pointer;}
+.blockFarmType {cursor: pointer;}
+.blockFarmTypes.active {background: #EEEEEE;}
+
+.backToTownFromFarm {position: absolute; bottom: 10px; right: 10px;}
 
 /* DOCK */
 .ship-selector {

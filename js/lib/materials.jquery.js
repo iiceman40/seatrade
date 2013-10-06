@@ -136,3 +136,50 @@ function loadCastleMaterials(){
 	
 	return materials;
 }
+
+/*
+ * CASTLE
+ */
+function loadFarmMaterials(){
+	
+	var materialFloor = new THREE.MeshLambertMaterial({
+		wireframe: true,
+		color: 'black'
+	});
+	
+	var gras = new THREE.ImageUtils.loadTexture("textures/gras.jpg");
+	gras.wrapS = gras.wrapT = THREE.RepeatWrapping;
+	gras.repeat.set( rows*10, columns*10 );
+	var materialGround = new THREE.MeshLambertMaterial({
+		map: gras
+	});
+	
+	materialBananas = new THREE.MeshLambertMaterial({
+		color: 0xffe20a
+	});
+	materialWheat = new THREE.MeshLambertMaterial({
+		color: 0xcaa561
+	});
+	materialGrapes = new THREE.MeshLambertMaterial({
+		color: 0x72158e
+	});
+	
+	var materials = new Object();
+	materials['Bananas'] = materialBananas;
+	materials['Wheat'] = materialWheat;
+	materials['Grapes'] = materialGrapes;
+	
+	$.each(materials, function(key, value) {
+		if($('#'+key).length == 0)
+			$('.farm-types').append('<div class="blockFarmType" id="'+key+'">'+key+'</div>');
+	});
+	
+	// materials which are not selectable
+	materials['materialFloor'] = materialFloor;
+	materials['materialGround'] = materialGround;
+	
+	selectedMaterial = materialBananas; // make it default material
+	$('#materialBananas').addClass('active');
+	
+	return materials;
+}

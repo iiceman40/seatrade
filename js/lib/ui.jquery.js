@@ -7,9 +7,9 @@ function initCastleUI(materials){
 		$(this).addClass('active');
 	});
 	
-	$('.block-type').click(function() {
+	$('.blockType').click(function() {
 		selectedBlockType = $(this).attr('id');
-		$('.block-type').removeClass('active');
+		$('.blockType').removeClass('active');
 		$(this).addClass('active');
 		console.log( selectedBlockType );
 	});
@@ -86,5 +86,21 @@ function initMapUI(){
 	$('.backToDock').click(function() {
 		$('.map-area').fadeOut(0);
 		initDockUI();
+	});
+}
+
+function initFarmUI(materials){
+	$('.blockFarmType').click(function(){
+		id = $(this).attr('id');
+		selectedMaterial = materials[id]
+		$('.blockFarmType').removeClass('active');
+		$(this).addClass('active');
+	});
+	
+	$('.backToTownFromFarm').click(function() {
+		$('.farm-hud').fadeOut(1000);
+		$('#container').fadeOut(1000, function(){
+			initTown("farm");
+		});
 	});
 }

@@ -105,25 +105,24 @@ function initDayTime() {
 	//directions light
 	light =  new THREE.DirectionalLight( 0xffeeee, 1.5 );
     light.position.set( 170, 500, -160 );
-    light.shadowDarkness = 0.2;
+    light.shadowDarkness = 0.5;
     //light.shadowCameraVisible = true;
-    light.shadowMapWidth = 1024; // default is 512
-	light.shadowMapHeight = 1024; // default is 512
+    light.shadowMapWidth = 5120; // default is 512
+	light.shadowMapHeight = 5120; // default is 512
 	
 	// enable shadows for a light
     light.castShadow = true;
     scene.add(light);
     
-    ambientLight = new THREE.AmbientLight(0x333333);
-	ambientLight.intensity = 0.1;
-	scene.add( ambientLight );
+    //ambientLight = new THREE.AmbientLight(0x333333);
+	//ambientLight.intensity = 0.1;
+	//scene.add( ambientLight );
 	
 	hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
 	hemiLight.color.setHSL( 0.6, 1, 0.6 );
 	hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
-	hemiLight.position.set( 0, 500, 0 );
+	hemiLight.position.set( 0, 2000, 0 );
 	scene.add( hemiLight );
-	
 	
 	// SKYDOME
 	var vertexShader = document.getElementById( 'vertexShader' ).textContent;

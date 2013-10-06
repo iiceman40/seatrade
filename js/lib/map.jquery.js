@@ -251,18 +251,7 @@ function placeCity(){
 			
 			// TODO dynamically add plants from a list
 			city.farm = new Object();
-			city.farm.field = new Object();
-			city.farm.storage = new Object();
-			// wheat
-			city.farm.field.wheat = new Object();
-			city.farm.field.wheat.numberOfParcels = 0;
-			city.farm.field.wheat.parcelIds = new Array();
-			city.farm.storage.wheat = 0;
-			// cattle
-			city.farm.field.cattle = new Object();
-			city.farm.field.cattle.numberOfParcels = 0;
-			city.farm.field.cattle.parcelIds = new Array();
-			city.farm.storage.cattle = 0;
+			city.farm.fields =  new Array();
 			
 			city.name = citynames[cities.length];
 			city.id = cities.length;

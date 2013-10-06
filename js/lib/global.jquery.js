@@ -7,10 +7,14 @@ var hoveringOver = null;
 var container;
 
 var camera, renderer, objects;
+
+// TODO different scenes for the different game areas. might fix the problem with reinitiating the farm after leaving
 var scene = new THREE.Scene();
+
 var projector = new THREE.Projector();
 var maxAnisotropy = 1;
 var clock = new THREE.Clock();
+var time = new Date().getTime();
 
 var ground = [];
 var objects = [];
@@ -56,7 +60,7 @@ maxAnisotropy = renderer.getMaxAnisotropy();
 //////////////////////////////////////
 function animate() {
 	// controls
-	if( activeArea == "castle" ){
+	if( activeArea == "castle" || activeArea == "farm" ){
 		controls.update();
 	}
 	requestAnimationFrame( animate );
@@ -65,6 +69,18 @@ function animate() {
 
 function render() {
 	var delta = clock.getDelta();
+	timeNew = new Date().getTime();
+	
+	/*
+	if(cities[player.pos.cityid] != undefined && delta > 1000){
+		$.each(cities[player.pos.cityid].farm.fields, function(key, value) {
+			if( value.scale.y < 15)
+				value.scale.y++;
+			else if( value.scale.y >= 15)
+				value.scale.y = 1;
+		});
+	}
+	*/
 
 	THREE.AnimationHandler.update( delta );
 	//camera.lookAt(scene.position);
@@ -152,6 +168,9 @@ function onDocumentMouseUp( event ) {
 	}
 	if( activeArea == 'castle'){
 		onCastleDocumentMouseUp(event);
+	}
+	if( activeArea == 'farm'){
+		onFarmDocumentMouseUp(event);
 	}
 }
 function onDocumentMouseMove( event ) {
