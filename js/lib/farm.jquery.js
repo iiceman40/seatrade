@@ -27,7 +27,7 @@ function initFarm() {
 	
 	for(i=0;i<15;i++){
 		for(j=0;j<10;j++){
-			yPosition = 1
+			yPosition = 1;
 			field = new THREE.Mesh( new THREE.PlaneGeometry( 50, 50 ), materials.materialFloor );
 			field.rotation.x = - Math.PI / 2;
 			field.position.x = (i+1)*50 - 15*50/2 -25;
@@ -164,6 +164,7 @@ function setFarmBlockPosition(block, intersects, intersectsGround){
 function grow(block) {
 	var initialScale = 1;
 	var finialScale = 15;
+	console.log('growing');
 	block.tween = new TWEEN.Tween({x: initialScale}).to({x: finialScale}, 30000);
 	
 	block.tween.onUpdate(function(){

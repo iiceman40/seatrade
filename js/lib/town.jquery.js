@@ -83,7 +83,7 @@ function onTownDocumentMouseUp( event ){
 					target.z = target.z+150;
 					target.x = target.x+50; 
 				}
-				cameraTo(target,1000);
+				//cameraTo(target,1000);
 				
 				switch( intersects[0].object.switchTo ){
 					case 'farm': loadFarm(); break;
@@ -106,7 +106,7 @@ function loadFarm(){
 	});
 }
 function loadCastle(){
-	$('#container').fadeOut(1000, function(){ 
+	$('#container').fadeOut(1000, function(){
 		initCastle();
 		console.log('castle loaded');
 		$('.hud').hide();

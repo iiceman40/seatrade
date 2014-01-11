@@ -45,7 +45,7 @@ travelSpeed = 200;
 //////////////////////////////////////
 // INIT RENDERER					//
 //////////////////////////////////////
-renderer = new THREE.WebGLRenderer({antialias:true, transparent: true, preserveDrawingBuffer: true});
+renderer = new THREE.WebGLRenderer({antialias: true, transparent: true, preserveDrawingBuffer: true, alpha: true});
 
 // enable shadows on the renderer
 renderer.shadowMapEnabled = true;
@@ -85,7 +85,8 @@ function render() {
 	THREE.AnimationHandler.update( delta );
 	//camera.lookAt(scene.position);
 	
-	if( activeArea != "castle"){
+	if( activeArea != "castle" ){
+		//console.log('tween');
 		TWEEN.update();
 	}
 	//controls.update( delta );
